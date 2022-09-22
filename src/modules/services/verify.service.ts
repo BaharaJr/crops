@@ -21,7 +21,7 @@ export class VerifyService {
       id: "2",
     },
     {
-      code: "1234",
+      code: "1235",
       supplier: "Justine",
       manufacturer: "IDD",
       price: `Tshs.${Math.floor(Math.random() * 10000)}/-`,
@@ -29,7 +29,7 @@ export class VerifyService {
       id: "1",
     },
     {
-      code: "1234",
+      code: "1236",
       supplier: "Justine",
       manufacturer: "IDD",
       price: `Tshs.${Math.floor(Math.random() * 10000)}/-`,
@@ -81,7 +81,8 @@ export class VerifyService {
       // This is the first request. Note how we start the response with CON
       response = `CON Karibu Soko Mkononi
       1. Bei ya sokoni
-      2. Angalia Pembejeo`;
+      2. Angalia Pembejeo
+      3. Pokea bei za masoko kila siku`;
     }
     if (text == "1") {
       // Business logic for first level response
@@ -93,12 +94,33 @@ export class VerifyService {
     if (text == "2") {
       response = `CON Ingiza namba ya pembejeo`;
     }
+    if (text == "3") {
+      response = `CON Ahsante kwa kutumia soko mkononi. 
+      Utapokea masoko kwenye number ${phoneNumber} kila siku`;
+    }
 
-    if (text.includes("*")) {
+    if (text && text.includes("*")) {
       const numbers = text.split("*");
-      const number = numbers[numbers.length - 1];
-      const price = this.crops.find(({ id }) => Number(id) === Number(number));
-      response = `CON Bei ya ${price.zao} ni ${price.price}`;
+      if (Number(numbers[0]) === 1) {
+        const number = numbers[numbers.length - 1];
+        const price = this.crops.find(
+          ({ id }) => Number(id) === Number(number)
+        );
+        response = `CON Bei ya ${price.zao} kwa gunia ni ${price.price}`;
+      } else {
+        const number = numbers[numbers.length - 1];
+        const price = this.crops.find(
+          ({ code }) => Number(code) === Number(number)
+        );
+        if (price) {
+          response = `CON Pembejeo ni halali. 
+          Bei ya ${price.zao} kwa gunia ni ${price.price}. 
+          Mzalishaji ${price.manufacturer}
+          Msambazaji ${price.supplier}`;
+        } else {
+          response = `CON Pembejo sio halali(Feki)`;
+        }
+      }
     }
 
     if (response === "") {
