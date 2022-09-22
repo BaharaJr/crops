@@ -16,7 +16,25 @@ export class VerifyService {
       code: "1234",
       supplier: "Justine",
       manufacturer: "IDD",
-      price: 500,
+      price: `Tshs.${Math.floor(Math.random() * 10000)}/-`,
+      zao: "Karanga",
+      id: "4",
+    },
+    {
+      code: "1234",
+      supplier: "Justine",
+      manufacturer: "IDD",
+      price: `Tshs.${Math.floor(Math.random() * 10000)}/-`,
+      zao: "Mahindi",
+      id: "3",
+    },
+    {
+      code: "1234",
+      supplier: "Justine",
+      manufacturer: "IDD",
+      price: `Tshs.${Math.floor(Math.random() * 10000)}/-`,
+      zao: "Njugu",
+      id: "5",
     },
   ];
 
@@ -75,6 +93,12 @@ export class VerifyService {
     if (text == "2") {
       response = `CON Ingiza namba ya pembejeo`;
     }
+
+    if (Number(text) > 2 && response === "") {
+      const price = this.crops.find(({ id }) => id === text);
+      response = `CON Bei ya ${price.zao} ni ${price.price}`;
+    }
+
     if (response === "") {
       response = `END Ahsante kwa kutumia soko mkononi`;
     }
