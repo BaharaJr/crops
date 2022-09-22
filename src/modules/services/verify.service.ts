@@ -1,7 +1,4 @@
 import { Injectable } from "@nestjs/common";
-import { InjectRepository } from "@nestjs/typeorm";
-import { Repository } from "typeorm";
-import { Crop } from "../entities/verify.entity";
 
 const AfricasTalking = require("africastalking");
 
@@ -78,7 +75,7 @@ export class VerifyService {
     if (text == "2") {
       response = `CON Ingiza namba ya pembejeo`;
     }
-    if (text === "") {
+    if (response === "") {
       response = `END Ahsante kwa kutumia soko mkononi`;
     }
 
