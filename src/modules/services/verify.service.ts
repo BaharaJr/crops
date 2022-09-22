@@ -18,7 +18,7 @@ export class VerifyService {
       manufacturer: "IDD",
       price: `Tshs.${Math.floor(Math.random() * 10000)}/-`,
       zao: "Karanga",
-      id: "4",
+      id: "2",
     },
     {
       code: "1234",
@@ -26,7 +26,7 @@ export class VerifyService {
       manufacturer: "IDD",
       price: `Tshs.${Math.floor(Math.random() * 10000)}/-`,
       zao: "Mahindi",
-      id: "3",
+      id: "1",
     },
     {
       code: "1234",
@@ -34,7 +34,7 @@ export class VerifyService {
       manufacturer: "IDD",
       price: `Tshs.${Math.floor(Math.random() * 10000)}/-`,
       zao: "Njugu",
-      id: "5",
+      id: "3",
     },
   ];
 
@@ -86,16 +86,18 @@ export class VerifyService {
     if (text == "1") {
       // Business logic for first level response
       response = `CON Chaguo zao
-      3. Mahindi
-      4. Karanga
-      5. Njugu`;
+      1. Mahindi
+      2. Karanga
+      3. Njugu`;
     }
     if (text == "2") {
       response = `CON Ingiza namba ya pembejeo`;
     }
 
-    if (Number(text) > 2 && response === "") {
-      const price = this.crops.find(({ id }) => id === text);
+    if (text.includes("*")) {
+      const numbers = text.split("*");
+      const number = numbers[numbers.length - 1];
+      const price = this.crops.find(({ id }) => Number(id) === Number(number));
       response = `CON Bei ya ${price.zao} ni ${price.price}`;
     }
 
