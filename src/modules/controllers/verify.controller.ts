@@ -10,6 +10,6 @@ export class VerifyController {
   }
   @Post()
   async verifyCrop(@Req() req, @Res() res) {
-    await this.service.verify(req, res);
+    this.service.verify(req, res);
   }
 }
