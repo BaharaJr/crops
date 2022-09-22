@@ -95,8 +95,12 @@ export class VerifyService {
       response = `CON Ingiza namba ya pembejeo`;
     }
     if (text == "3") {
-      response = `CON Ahsante kwa kutumia soko mkononi. 
+      response = `END Ahsante kwa kutumia soko mkononi. 
       Utapokea masoko kwenye number ${phoneNumber} kila siku`;
+      this.sendToNumber({
+        message: "Ahsante kwa kujiunga na huduma ya masoko mkonni",
+        phone: phoneNumber,
+      });
     }
 
     if (text && text.includes("*")) {
@@ -106,19 +110,19 @@ export class VerifyService {
         const price = this.crops.find(
           ({ id }) => Number(id) === Number(number)
         );
-        response = `CON Bei ya ${price.zao} kwa gunia ni ${price.price}`;
+        response = `END Bei ya ${price.zao} kwa gunia ni ${price.price}`;
       } else {
         const number = numbers[numbers.length - 1];
         const price = this.crops.find(
           ({ code }) => Number(code) === Number(number)
         );
         if (price) {
-          response = `CON Pembejeo ni halali. 
+          response = `END Pembejeo ni halali. 
           Bei ya ${price.zao} kwa gunia ni ${price.price}. 
           Mzalishaji ${price.manufacturer}
           Msambazaji ${price.supplier}`;
         } else {
-          response = `CON Pembejo sio halali(Feki)`;
+          response = `END Pembejo sio halali(Feki)`;
         }
       }
     }
