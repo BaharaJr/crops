@@ -199,9 +199,7 @@ export class VerifyService {
       );
       console.log(JSON.stringify(price));
       if (price) {
-        response = `END
-      Pembejeo ni halali. 
-      Bei ya ${price.zao} kwa gunia ni ${price.price}. 
+        response = `END Pembejeo ni halali. 
       Mzalishaji: ${price.manufacturer}
       Msambazaji: ${price.supplier}`;
       } else {
