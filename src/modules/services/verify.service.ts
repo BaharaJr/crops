@@ -57,7 +57,7 @@ export class VerifyService {
   ) => {
     const { phoneNumber, text } = req.body;
     let response = "";
-    if (text === " " || !text) {
+    if (text === "") {
       response = `CON Karibu Soko Mkononi
       1. Pata bei ya mazao sokoni
       2. Hakiki ubora wa mbegu au pembejeo
