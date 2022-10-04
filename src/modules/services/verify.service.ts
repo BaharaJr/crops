@@ -64,7 +64,7 @@ export class VerifyService {
       1. Pata bei ya mazao sokoni
       2. Hakiki ubora wa mbegu au pembejeo
       3. Jiunge kupata bei ya soko kila siku
-      4. Toa taarifa ya pembejeo au mbegu isiyo na ubora
+      4. Toa taarifa ya pembejeo au mbegu
       5. Toa taarifa ya tatizo au ugonjwa wa mazao
       6. Sajili namba ya mpata taarifa`;
     } else {
@@ -181,6 +181,9 @@ export class VerifyService {
     }
   };
   taarifa = (numbers: any, stage: number) => {
+    if (this.registered.length === 0) {
+      return `END Hakuna wapokea taarifa, taarifa itatunzwa.`;
+    }
     this.sendToNumber({ message: numbers[1], phone: this.registered });
     return `END Ahsante kwa kutoa taarifa ya ${
       stage === 4 ? "ugonjwa wa zao" : "bidhaa isiyobora"
