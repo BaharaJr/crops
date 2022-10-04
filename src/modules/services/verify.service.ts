@@ -1,10 +1,9 @@
 import { Injectable } from "@nestjs/common";
-
-const AfricasTalking = require("africastalking");
+import AfricasTalking from "africastalking";
 
 const smsAfrica = AfricasTalking({
-  username: "bennett",
-  apiKey: "5b6ab2184241f1a92befcbd6a1e10c499ac31d73d586def4beeb0958e317a37a",
+  username: process.env.AT_USERNAME,
+  apiKey: process.env.AT_APIKEY,
 });
 
 const sms = smsAfrica.SMS;
@@ -71,21 +70,22 @@ export class VerifyService {
     }
   };
 
-  verify = (req, res) => {
+  verify = (
+    req: { body: { phoneNumber: any; text: any } },
+    res: { set: (arg0: string) => void; send: (arg0: string) => void }
+  ) => {
     const { phoneNumber, text } = req.body;
     console.log("PHONE", phoneNumber);
     console.log("TEXT", text);
     let response = "";
 
     if (text == "") {
-      // This is the first request. Note how we start the response with CON
       response = `CON Karibu Soko Mkononi
       1. Bei ya sokoni
       2. Angalia Pembejeo
       3. Pokea bei za masoko kila siku`;
     }
     if (text == "1") {
-      // Business logic for first level response
       response = `CON Chaguo zao
       1. Mahindi
       2. Karanga
@@ -131,7 +131,6 @@ export class VerifyService {
       response = `END Ahsante kwa kutumia soko mkononi`;
     }
 
-    // Send the response back to the API
     res.set("Content-Type: text/plain");
     res.send(response);
   };
