@@ -1,4 +1,6 @@
 import { Injectable } from "@nestjs/common";
+import { readFileSync } from "fs";
+import { locations } from "../../core/system/system.config";
 require("dotenv").config();
 const AfricasTalking = require("africastalking")({
   username: process.env.AT_USERNAME,
@@ -17,7 +19,7 @@ export class VerifyService {
       code: "1234",
       supplier: "Justine",
       manufacturer: "IDD",
-      price: `Tshs.${Math.floor(Math.random() * 10000)}/-`,
+      price: `Tshs.${Math.floor(Math.random() * 10000000)}/-`,
       zao: "Karanga",
       id: "2",
     },
@@ -25,7 +27,7 @@ export class VerifyService {
       code: "1235",
       supplier: "Justine",
       manufacturer: "IDD",
-      price: `Tshs.${Math.floor(Math.random() * 10000)}/-`,
+      price: `Tshs.${Math.floor(Math.random() * 10000000)}/-`,
       zao: "Mahindi",
       id: "1",
     },
@@ -33,7 +35,7 @@ export class VerifyService {
       code: "1236",
       supplier: "Justine",
       manufacturer: "IDD",
-      price: `Tshs.${Math.floor(Math.random() * 10000)}/-`,
+      price: `Tshs.${Math.floor(Math.random() * 10000000)}/-`,
       zao: "Njugu",
       id: "3",
     },
@@ -57,7 +59,7 @@ export class VerifyService {
   ) => {
     const { phoneNumber, text } = req.body;
     let response = "";
-    if (text === "") {
+    if (text == "") {
       response = `CON Karibu Soko Mkononi
       1. Pata bei ya mazao sokoni
       2. Hakiki ubora wa mbegu au pembejeo
@@ -65,8 +67,9 @@ export class VerifyService {
       4. Toa taarifa ya pembejeo au mbegu isiyo na ubora
       5. Toa taarifa ya tatizo au ugonjwa wa mazao
       6. Sajili namba ya mpata taarifa`;
+    } else {
+      response = this.checkText(text, phoneNumber);
     }
-    response = this.checkText(text, phoneNumber);
 
     if (response === "") {
       response = `END Ahsante kwa kutumia soko mkononi`;
@@ -82,28 +85,28 @@ export class VerifyService {
       response = this.checkLessOrEqualTo3(text, phoneNumber);
     }
     if (Number(text) > 3 && Number(text) <= 6) {
-      response = this.checkGreaterThan3LessThan7(text, phoneNumber);
+      response = this.checkGreaterThan3LessThan7(text);
     }
 
     if (text && text.includes("*")) {
       const numbers = text.split("*");
-      response = this.checkRepeating(numbers);
+      response = this.checkRepeating(numbers, phoneNumber);
     }
     return response;
   };
 
-  checkGreaterThan3LessThan7 = (text: string, phoneNumber: string) => {
+  checkGreaterThan3LessThan7 = (text: string) => {
     let response = "";
-    if (text == "4") {
-      response = "CON Taarifa ya ugonjwa";
+    if (text == "5") {
+      response = "CON Toa taarifa ya tatizo au ugonjwa wa mazao";
     }
 
-    if (text == "5") {
+    if (text == "4") {
       response = "CON Taarifa ya mbegu au pembejeo";
     }
 
     if (text == "6") {
-      response = "CON Ingiza number ya mpata taarifa";
+      response = "CON Ingiza number ya mpata taarifa ikianza na +255";
     }
     return response;
   };
@@ -111,7 +114,7 @@ export class VerifyService {
   checkLessOrEqualTo3 = (text: string, phoneNumber: string) => {
     let response = "";
     if (text == "1") {
-      response = `CON Weka jina la zao`;
+      response = `CON Jina la zao likifatiwa na alama ya kutoa weka mkoa`;
     }
     if (text == "2") {
       response = `CON Ingiza namba ya pembejeo`;
@@ -128,25 +131,110 @@ export class VerifyService {
     return response;
   };
 
-  checkRepeating = (numbers: any[]) => {
+  checkRepeating = (numbers: any[], phone: string) => {
+    const crops: any = JSON.parse(readFileSync(locations.data, "utf-8"));
     let response = "";
-    if (Number(numbers[0]) === 1) {
-      const number = numbers[numbers.length - 1];
-      const price = this.crops.find(({ zao }) =>
-        zao?.toLowerCase()?.includes(number)
-      );
-      response = `END Bei ya ${price.zao} kwa gunia ni ${price.price}`;
+    if (Number(numbers[0]) <= 3) {
+      response = this.checkNumbersOfLessOrEqual3(numbers, crops);
     } else {
-      return this.getRepeatedGreaterThan1(numbers);
+      response = this.checkNumbersOfGreaterThan3(numbers, phone);
+    }
+
+    return response;
+  };
+
+  checkNumbersOfLessOrEqual3 = (numbers: any[], crops: any) => {
+    const numberLettr = Number(numbers[0]);
+    switch (numberLettr) {
+      case 1:
+        return this.getPrice(numbers, crops);
+      case 2:
+        return this.validateCrop(numbers);
+      default:
+        return "END Ahsante kwa kutumia shamba kiganjani";
+    }
+  };
+  checkNumbersOfGreaterThan3 = (numbers: any[], phone: string) => {
+    const numberLettr = Number(numbers[0]);
+    switch (numberLettr) {
+      case 4:
+        return this.taarifa(numbers, 4);
+      case 5:
+        return this.taarifa(numbers, 5);
+      case 6:
+        return this.register(numbers, phone);
+      default:
+        return "END Ahsante kwa kutumia shamba kiganjani";
+    }
+  };
+
+  register = (numbers: any[], phone: string) => {
+    if (this.access.includes(phone)) {
+      this.registered = [...this.registered, numbers[1]];
+      this.sendToNumber({
+        message: `Umesajiliwa kupokea taarifa muhimu za kilimo na ${phone}`,
+        phone: numbers[1],
+      });
+      return `END Mpata taarifa mwenye nambari ${numbers[1]} amepokelewa.`;
+    } else {
+      return `END Hauna ruhusa ya kutunza mpata taarifa`;
+    }
+  };
+  taarifa = (numbers: any, stage: number) => {
+    this.sendToNumber({ message: numbers[1], phone: this.registered });
+    return `END Ahsante kwa kutoa taarifa ya ${
+      stage === 4 ? "ugonjwa wa zao" : "bidhaa isiyobora"
+    }`;
+  };
+  validateCrop = (numbers: any[]) => {
+    let response = "";
+    const number = numbers[numbers.length - 1];
+    const price = this.crops.find(({ code }) =>
+      code.toLowerCase().includes(number)
+    );
+    if (price) {
+      response = `END
+      Pembejeo ni halali. 
+      Bei ya ${price.zao} kwa gunia ni ${price.price}. 
+      Mzalishaji: ${price.manufacturer}
+      Msambazaji: ${price.supplier}`;
+    } else {
+      response = `END Pembejeo haijasajiliwa kwenye kanzi data yetu inaweza kuwa bandia/feki`;
     }
     return response;
   };
-  getRepeatedGreaterThan1 = (numbers: any[]) => {
+
+  checkNumbersGreaterThan2 = (numbers: any[], crops: any) => {
+    return "";
+  };
+  getPrice = (numbers: any[], crops: any) => {
     let response = "";
     const number = numbers[numbers.length - 1];
-    const price = this.crops.find(({ zao }) =>
-      zao?.toLowerCase()?.includes(number)
+    const zao = number.includes("-") ? number.split("-") : number.split("_");
+    const region = Object.keys(crops).find((key) =>
+      key.toLowerCase().includes(zao[1] || "")
     );
+    if (!region) {
+      response = `END Hakuna taarifa za mkoa wa ${zao[1]}`;
+    } else {
+      const crop = Object.keys(crops[region][0]).find((key) =>
+        key.toLowerCase().includes(zao[0])
+      );
+      if (!crop) {
+        response = `END Hakuna taarifa za zao ${zao[0]} mkoani ${region}`;
+      } else {
+        const price = crops[region][0][crop];
+        response = `END Bei ya ${crop}, mkoani ${region}, wilaya ya ${crops[region][0]?.district}. 
+        Bei ya juu: Tshs. ${price.max}/-. 
+        Bei ya chini Tshs. ${price.min}/-`;
+      }
+    }
+    return response;
+  };
+  getRepeatedGreaterThan1 = (numbers: any[], crops: any) => {
+    let response = "";
+    const number = numbers[numbers.length - 1];
+    const price = crops.find(({ zao }) => zao?.toLowerCase()?.includes(number));
     if (price) {
       response = `END Pembejeo ni halali. 
         Bei ya ${price.zao} kwa gunia ni ${price.price}. 
