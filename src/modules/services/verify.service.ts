@@ -9,6 +9,7 @@ const sms = AfricasTalking.SMS;
 
 @Injectable()
 export class VerifyService {
+  notify = [];
   crops = [
     {
       code: "1234",
@@ -80,15 +81,13 @@ export class VerifyService {
 
     if (text == "") {
       response = `CON Karibu Soko Mkononi
-      1. Bei ya sokoni
-      2. Angalia Pembejeo
-      3. Pokea bei za masoko kila siku`;
+      1. Pata bei ya mazao sokoni
+      2. Hakiki ubora wa mbegu au pembejeo
+      3. Jiunge kupata bei ya soko kila siku
+      4. Toa taarifa ya bidhaa au pembejo bandia/feki`;
     }
     if (text == "1") {
-      response = `CON Chaguo zao
-      1. Mahindi
-      2. Karanga
-      3. Njugu`;
+      response = `CON Weka jina la zao`;
     }
     if (text == "2") {
       response = `CON Ingiza namba ya pembejeo`;
@@ -100,30 +99,12 @@ export class VerifyService {
         message: "Ahsante kwa kujiunga na huduma ya masoko mkonni",
         phone: phoneNumber,
       });
+      this.notify = [...this.notify, phoneNumber];
     }
 
     if (text && text.includes("*")) {
       const numbers = text.split("*");
-      if (Number(numbers[0]) === 1) {
-        const number = numbers[numbers.length - 1];
-        const price = this.crops.find(
-          ({ id }) => Number(id) === Number(number)
-        );
-        response = `END Bei ya ${price.zao} kwa gunia ni ${price.price}`;
-      } else {
-        const number = numbers[numbers.length - 1];
-        const price = this.crops.find(
-          ({ code }) => Number(code) === Number(number)
-        );
-        if (price) {
-          response = `END Pembejeo ni halali. 
-          Bei ya ${price.zao} kwa gunia ni ${price.price}. 
-          Mzalishaji ${price.manufacturer}
-          Msambazaji ${price.supplier}`;
-        } else {
-          response = `END Pembejo sio halali(Feki)`;
-        }
-      }
+      response = this.checkRepeating(numbers);
     }
 
     if (response === "") {
@@ -132,5 +113,29 @@ export class VerifyService {
 
     res.set("Content-Type: text/plain");
     res.send(response);
+  };
+
+  checkRepeating = (numbers: any[]) => {
+    let response = "";
+    if (Number(numbers[0]) === 1) {
+      const number = numbers[numbers.length - 1];
+      const price = this.crops.find(({ id }) => Number(id) === Number(number));
+      response = `END Bei ya ${price.zao} kwa gunia ni ${price.price}`;
+    } else {
+      const number = numbers[numbers.length - 1];
+      const price = this.crops.find(({ zao }) =>
+        zao.toLowerCase().includes(number)
+      );
+      if (price) {
+        response = `END
+        Pembejeo ni halali. 
+        Bei ya ${price.zao} kwa gunia ni ${price.price}. 
+        Mzalishaji: ${price.manufacturer}
+        Msambazaji: ${price.supplier}`;
+      } else {
+        response = `END Pembejeo haijasajiliwa kwenye kanzi data yetu inaweza kuwa bandia/feki`;
+      }
+    }
+    return response;
   };
 }
