@@ -190,27 +190,29 @@ export class VerifyService {
     }`;
   };
   validateCrop = (numbers: any[]) => {
-    console.log(numbers);
-    let response = "";
-    const number = numbers[numbers.length - 1];
-    const price = this.crops.find(({ code }) =>
-      code.toLowerCase().includes(number)
-    );
-    if (price) {
-      response = `END
+    try {
+      console.log(numbers);
+      let response = "";
+      const number = numbers[numbers.length - 1];
+      const price = this.crops.find(({ code }) =>
+        code.toLowerCase().includes(number)
+      );
+      console.log(JSON.stringify(price));
+      if (price) {
+        response = `END
       Pembejeo ni halali. 
       Bei ya ${price.zao} kwa gunia ni ${price.price}. 
       Mzalishaji: ${price.manufacturer}
       Msambazaji: ${price.supplier}`;
-    } else {
-      response = `END Pembejeo haijasajiliwa kwenye kanzi data yetu inaweza kuwa bandia/feki`;
+      } else {
+        response = `END Pembejeo haijasajiliwa kwenye kanzi data yetu inaweza kuwa bandia/feki`;
+      }
+      return response;
+    } catch (e) {
+      return `END Tunapata tatizo kuhakiki pembejo tafadhali jaribu tena baadae`;
     }
-    return response;
   };
 
-  checkNumbersGreaterThan2 = (numbers: any[], crops: any) => {
-    return "";
-  };
   getPrice = (numbers: any[], crops: any) => {
     let response = "";
     const number = numbers[numbers.length - 1];
