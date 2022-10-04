@@ -1,12 +1,11 @@
 import { Injectable } from "@nestjs/common";
-import AfricasTalking from "africastalking";
-
-const smsAfrica = AfricasTalking({
+require("dotenv").config();
+const AfricasTalking = require("africastalking")({
   username: process.env.AT_USERNAME,
   apiKey: process.env.AT_APIKEY,
 });
 
-const sms = smsAfrica.SMS;
+const sms = AfricasTalking.SMS;
 
 @Injectable()
 export class VerifyService {
