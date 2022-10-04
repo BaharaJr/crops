@@ -190,6 +190,7 @@ export class VerifyService {
     }`;
   };
   validateCrop = (numbers: any[]) => {
+    console.log(numbers);
     let response = "";
     const number = numbers[numbers.length - 1];
     const price = this.crops.find(({ code }) =>
