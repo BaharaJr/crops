@@ -1,0 +1,221 @@
+{
+  "Arusha": [
+    {
+      "district": "Arusha",
+      "Maize (Mahindi)": { "min": "95,000", "max": "98,000" },
+      "Rice (Mchele)": { "min": "230,000", "max": "280,000" },
+      "Sorghum (Mtama)": { "min": "75,000", "max": "80,000" },
+      "Bulrush Millet (Uwele)": { "min": "75,000", "max": "85,000" },
+      "Finger Millet (Ulezi)": { "min": "120,000", "max": "125,000" },
+      "Wheat Grain  (Ngano)": { "min": "130,000", "max": "150,000" },
+      "Beans (Maharage)": { "min": "220,000", "max": "280,000" },
+      "Irish Potatoes (Viazi Mviringo)": { "min": "75,000", "max": "80,000" }
+    }
+  ],
+  "Dar es Salaam": [
+    {
+      "district": "Tandika",
+      "Maize (Mahindi)": { "min": "98,000", "max": "120,000" },
+      "Rice (Mchele)": { "min": "240,000", "max": "330,000" },
+      "Sorghum (Mtama)": { "min": "100,000", "max": "120,000" },
+      "Bulrush Millet (Uwele)": { "min": "110,000", "max": "120,000" },
+      "Finger Millet (Ulezi)": { "min": "170,000", "max": "180,000" },
+      "Wheat Grain  (Ngano)": { "min": "200,000", "max": "220,000" },
+      "Beans (Maharage)": { "min": "280,000", "max": "320,000" },
+      "Irish Potatoes (Viazi Mviringo)": { "min": "68,000", "max": "70,000" }
+    }
+  ],
+  "Dodoma": [
+    {
+      "district": "Kabaigwa",
+      "Maize (Mahindi)": { "min": "95,000", "max": "95,000" },
+      "Rice (Mchele)": { "min": "NA", "max": "NA" },
+      "Sorghum (Mtama)": { "min": "72,000", "max": "77,500" },
+      "Bulrush Millet (Uwele)": { "min": "NA", "max": "NA" },
+      "Finger Millet (Ulezi)": { "min": "NA", "max": "NA" },
+      "Wheat Grain  (Ngano)": { "min": "NA", "max": "NA" },
+      "Beans (Maharage)": { "min": "NA", "max": "NA" },
+      "Irish Potatoes (Viazi Mviringo)": { "min": "NA", "max": "NA" }
+    },
+    {
+      "district": "Majengo",
+      "Maize (Mahindi)": { "min": "92,000", "max": "98,000" },
+      "Rice (Mchele)": { "min": "250,000", "max": "310,000" },
+      "Sorghum (Mtama)": { "min": "59,000", "max": "76,000" },
+      "Bulrush Millet (Uwele)": { "min": "70,000", "max": "80,000" },
+      "Finger Millet (Ulezi)": { "min": "120,000", "max": "130,000" },
+      "Wheat Grain  (Ngano)": { "min": "180,000", "max": "182,400" },
+      "Beans (Maharage)": { "min": "250,000", "max": "298,000" },
+      "Irish Potatoes (Viazi Mviringo)": { "min": "69,500", "max": "90,000" }
+    }
+  ],
+  "Iringa": [
+    {
+      "district": "Iringa",
+      "Maize (Mahindi)": { "min": "80,000", "max": "80,000" },
+      "Rice (Mchele)": { "min": "170,000", "max": "250,000" },
+      "Sorghum (Mtama)": { "min": "100,000", "max": "100,000" },
+      "Bulrush Millet (Uwele)": { "min": "150,000", "max": "150,000" },
+      "Finger Millet (Ulezi)": { "min": "150,000", "max": "150,000" },
+      "Wheat Grain  (Ngano)": { "min": "180,000", "max": "200,000" },
+      "Beans (Maharage)": { "min": "180,000", "max": "250,000" },
+      "Irish Potatoes (Viazi Mviringo)": { "min": "70,000", "max": "70,000" }
+    }
+  ],
+  "Kagera": [
+    {
+      "district": "Bukoba",
+      "Maize (Mahindi)": { "min": "120,000", "max": "125,000" },
+      "Rice (Mchele)": { "min": "250,000", "max": "350,000" },
+      "Sorghum (Mtama)": { "min": "160,000", "max": "180,000" },
+      "Bulrush Millet (Uwele)": { "min": "180,000", "max": "190,000" },
+      "Finger Millet (Ulezi)": { "min": "180,000", "max": "190,000" },
+      "Wheat Grain  (Ngano)": { "min": "200,000", "max": "210,000" },
+      "Beans (Maharage)": { "min": "250,000", "max": "300,000" },
+      "Irish Potatoes (Viazi Mviringo)": { "min": "80,000", "max": "90,000" }
+    }
+  ],
+  "Katavi": [
+    {
+      "district": "Mpanda",
+      "Maize (Mahindi)": { "min": "95,000", "max": "98,000" },
+      "Rice (Mchele)": { "min": "230,000", "max": "240,000" },
+      "Sorghum (Mtama)": { "min": "NA", "max": "NA" },
+      "Bulrush Millet (Uwele)": { "min": "NA", "max": "NA" },
+      "Finger Millet (Ulezi)": { "min": "NA", "max": "NA" },
+      "Wheat Grain  (Ngano)": { "min": "NA", "max": "NA" },
+      "Beans (Maharage)": { "min": "235,000", "max": "250,000" },
+      "Irish Potatoes (Viazi Mviringo)": { "min": "65,000", "max": "65,000" }
+    }
+  ],
+  "Lindi": [
+    {
+      "district": "Lindi",
+      "Maize (Mahindi)": { "min": "100,000", "max": "140,000" },
+      "Rice (Mchele)": { "min": "235,000", "max": "310,000" },
+      "Sorghum (Mtama)": { "min": "100,000", "max": "200,000" },
+      "Bulrush Millet (Uwele)": { "min": "NA", "max": "NA" },
+      "Finger Millet (Ulezi)": { "min": "NA", "max": "NA" },
+      "Wheat Grain  (Ngano)": { "min": "300,000", "max": "400,000" },
+      "Beans (Maharage)": { "min": "260,000", "max": "280,000" },
+      "Irish Potatoes (Viazi Mviringo)": { "min": "120,000", "max": "120,000" }
+    }
+  ],
+  "Manyara": [
+    {
+      "district": "Babati",
+      "Maize (Mahindi)": { "min": "100,000", "max": "114,000" },
+      "Rice (Mchele)": { "min": "270,000", "max": "300,000" },
+      "Sorghum (Mtama)": { "min": "90,000", "max": "110,000" },
+      "Bulrush Millet (Uwele)": { "min": "90,000", "max": "110,000" },
+      "Finger Millet (Ulezi)": { "min": "120,000", "max": "130,000" },
+      "Wheat Grain  (Ngano)": { "min": "210,000", "max": "230,000" },
+      "Beans (Maharage)": { "min": "240,000", "max": "250,000" },
+      "Irish Potatoes (Viazi Mviringo)": { "min": "115,000", "max": "115,000" }
+    }
+  ],
+  "Mbeya": [
+    {
+      "district": "Mbeya",
+      "Maize (Mahindi)": { "min": "90,000", "max": "90,000" },
+      "Rice (Mchele)": { "min": "240,000", "max": "240,000" },
+      "Sorghum (Mtama)": { "min": "170,000", "max": "170,000" },
+      "Bulrush Millet (Uwele)": { "min": "NA", "max": "NA" },
+      "Finger Millet (Ulezi)": { "min": "NA", "max": "NA" },
+      "Wheat Grain  (Ngano)": { "min": "160,000", "max": "160,000" },
+      "Beans (Maharage)": { "min": "210,000", "max": "228,000" },
+      "Irish Potatoes (Viazi Mviringo)": { "min": "48,000", "max": "48,000" }
+    }
+  ],
+  "Mtwara": [
+    {
+      "district": "Mtwara",
+      "Maize (Mahindi)": { "min": "88,000", "max": "88,000" },
+      "Rice (Mchele)": { "min": "230,000", "max": "240,000" },
+      "Sorghum (Mtama)": { "min": "100,000", "max": "100,000" },
+      "Bulrush Millet (Uwele)": { "min": "NA", "max": "NA" },
+      "Finger Millet (Ulezi)": { "min": "180,000", "max": "180,000" },
+      "Wheat Grain  (Ngano)": { "min": "NA", "max": "NA" },
+      "Beans (Maharage)": { "min": "250,000", "max": "270,000" },
+      "Irish Potatoes (Viazi Mviringo)": { "min": "70,000", "max": "75,000" }
+    }
+  ],
+  "Mwanza": [
+    {
+      "district": "Mwanza",
+      "Maize (Mahindi)": { "min": "115,000", "max": "122,000" },
+      "Rice (Mchele)": { "min": "250,000", "max": "300,000" },
+      "Sorghum (Mtama)": { "min": "160,000", "max": "200,000" },
+      "Bulrush Millet (Uwele)": { "min": "150,000", "max": "200,000" },
+      "Finger Millet (Ulezi)": { "min": "180,000", "max": "200,000" },
+      "Wheat Grain  (Ngano)": { "min": "NA", "max": "NA" },
+      "Beans (Maharage)": { "min": "280,000", "max": "360,000" },
+      "Irish Potatoes (Viazi Mviringo)": { "min": "95,000", "max": "100,000" }
+    }
+  ],
+  "Njombe": [
+    {
+      "district": "Mkoa",
+      "Maize (Mahindi)": { "min": "83,000", "max": "90,000" },
+      "Rice (Mchele)": { "min": "220,000", "max": "250,000" },
+      "Sorghum (Mtama)": { "min": "NA", "max": "NA" },
+      "Bulrush Millet (Uwele)": { "min": "NA", "max": "NA" },
+      "Finger Millet (Ulezi)": { "min": "200,000", "max": "220,000" },
+      "Wheat Grain  (Ngano)": { "min": "200,000", "max": "220,000" },
+      "Beans (Maharage)": { "min": "180,000", "max": "200,000" },
+      "Irish Potatoes (Viazi Mviringo)": { "min": "60,000", "max": "70,000" }
+    }
+  ],
+  "Rukwa": [
+    {
+      "district": "Sumbawanga",
+      "Maize (Mahindi)": { "min": "80,000", "max": "90,000" },
+      "Rice (Mchele)": { "min": "180,000", "max": "200,000" },
+      "Sorghum (Mtama)": { "min": "NA", "max": "NA" },
+      "Bulrush Millet (Uwele)": { "min": "NA", "max": "NA" },
+      "Finger Millet (Ulezi)": { "min": "230,000", "max": "240,000" },
+      "Wheat Grain  (Ngano)": { "min": "190,000", "max": "195,000" },
+      "Beans (Maharage)": { "min": "210,000", "max": "300,000" },
+      "Irish Potatoes (Viazi Mviringo)": { "min": "70,000", "max": "70,000" }
+    }
+  ],
+  "Ruvuma": [
+    {
+      "district": "Songea",
+      "Maize (Mahindi)": { "min": "70,000", "max": "80,000" },
+      "Rice (Mchele)": { "min": "200,000", "max": "280,000" },
+      "Sorghum (Mtama)": { "min": "NA", "max": "NA" },
+      "Bulrush Millet (Uwele)": { "min": "NA", "max": "NA" },
+      "Finger Millet (Ulezi)": { "min": "100,000", "max": "100,000" },
+      "Wheat Grain  (Ngano)": { "min": "NA", "max": "NA" },
+      "Beans (Maharage)": { "min": "200,000", "max": "220,000" },
+      "Irish Potatoes (Viazi Mviringo)": { "min": "90,000", "max": "95,000" }
+    }
+  ],
+  "Tabora": [
+    {
+      "district": "Tabora",
+      "Maize (Mahindi)": { "min": "92,000", "max": "96,000" },
+      "Rice (Mchele)": { "min": "240,000", "max": "260,000" },
+      "Sorghum (Mtama)": { "min": "140,000", "max": "150,000" },
+      "Bulrush Millet (Uwele)": { "min": "NA", "max": "NA" },
+      "Finger Millet (Ulezi)": { "min": "180,000", "max": "190,000" },
+      "Wheat Grain  (Ngano)": { "min": "NA", "max": "NA" },
+      "Beans (Maharage)": { "min": "290,000", "max": "300,000" },
+      "Irish Potatoes (Viazi Mviringo)": { "min": "80,000", "max": "90,000" }
+    }
+  ],
+  "Tanga": [
+    {
+      "district": "Tanga",
+      "Maize (Mahindi)": { "min": "110,500", "max": "112,500" },
+      "Rice (Mchele)": { "min": "240,500", "max": "260,500" },
+      "Sorghum (Mtama)": { "min": "110,000", "max": "110,000" },
+      "Bulrush Millet (Uwele)": { "min": "199,000", "max": "199,000" },
+      "Finger Millet (Ulezi)": { "min": "202,500", "max": "202,500" },
+      "Wheat Grain  (Ngano)": { "min": "199,000", "max": "200,000" },
+      "Beans (Maharage)": { "min": "220,000", "max": "250,000" },
+      "Irish Potatoes (Viazi Mviringo)": { "min": "77,000", "max": "80,000" }
+    }
+  ]
+}
