@@ -29,7 +29,7 @@ export class AppController {
         return cleanKeys;
       });
     });
-    writeFileSync("data.json", JSON.stringify(clean));
+    // writeFileSync("data.json", JSON.stringify(clean));
   };
 }
 

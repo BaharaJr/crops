@@ -1,6 +1,4 @@
 import { Injectable, Logger } from "@nestjs/common";
-import { readFileSync } from "fs";
-import { locations } from "../../core/system/system.config";
 require("dotenv").config();
 const AfricasTalking = require("africastalking")({
   username: process.env.AT_USERNAME,
@@ -12,7 +10,7 @@ const sms = AfricasTalking.SMS;
 @Injectable()
 export class VerifyService {
   notify = [];
-  access = ["+255757714834", "+255745909129", "+255764480794"];
+  access = ["+255757714834"];
   registered = [];
   crops = [
     {
@@ -136,10 +134,9 @@ export class VerifyService {
   };
 
   checkRepeating = (numbers: any[], phone: string) => {
-    const crops: any = JSON.parse(readFileSync(locations.data, "utf-8"));
     let response = "";
     if (Number(numbers[0]) <= 3) {
-      response = this.checkNumbersOfLessOrEqual3(numbers, crops);
+      response = this.checkNumbersOfLessOrEqual3(numbers, this.crops);
     } else {
       response = this.checkNumbersOfGreaterThan3(numbers, phone);
     }
