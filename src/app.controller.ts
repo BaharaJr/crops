@@ -5,7 +5,6 @@ import { writeFileSync } from "fs";
 export class AppController {
   @Get()
   status() {
-    this.clean();
     return { status: 200, message: "OK" };
   }
 

@@ -24,8 +24,3 @@ jobs:
       - name: 🏗️
         id: docker_build
         run: sh build.sh
-
-      - name: 🔀
-        uses: BaharaJr/merge-pr@0.0.1
-        with:
-          GITHUB_TOKEN: ${{ secrets.TOKEN }}
