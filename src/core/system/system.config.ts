@@ -10,14 +10,6 @@ export const config = {
   database: "shamba",
 };
 
-export const fileSystem = () => {
-  if (!existsSync("./files")) {
-    mkdirSync("./files");
-    cpSync("./data.json", "./files/data.json");
-  }
-  if (!existsSync("./files/data.json")) {
-    cpSync("./data.json", "./files/data.json");
-  }
-};
+export const fileSystem = () => {};
 
 export const locations = { data: "./files/data.json" };
