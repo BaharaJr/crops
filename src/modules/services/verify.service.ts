@@ -10,7 +10,7 @@ const sms = AfricasTalking.SMS;
 @Injectable()
 export class VerifyService {
   notify = [];
-  access = ["+255757714834"];
+  access = process.env.ACCESS?.split(",");
   registered = [];
   crops = [
     {
