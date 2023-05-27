@@ -1,4 +1,4 @@
-import { Injectable } from "@nestjs/common";
+import { Injectable, Logger } from "@nestjs/common";
 import { readFileSync } from "fs";
 import { locations } from "../../core/system/system.config";
 require("dotenv").config();
@@ -59,6 +59,8 @@ export class VerifyService {
   ) => {
     const { phoneNumber, text } = req.body;
     let response = "";
+    Logger.debug(text, "TEXT");
+    Logger.debug(phoneNumber, "PHONE");
     if (text == "") {
       response = `CON Karibu Soko Mkononi
       1. Pata bei ya mazao sokoni
@@ -74,6 +76,8 @@ export class VerifyService {
     if (response === "") {
       response = `END Ahsante kwa kutumia soko mkononi`;
     }
+
+    Logger.debug(response, "RESPONSE");
 
     res.set("Content-Type: text/plain");
     res.send(response);
@@ -120,7 +124,7 @@ export class VerifyService {
       response = `CON Ingiza namba ya pembejeo`;
     }
     if (text == "3") {
-      response = `END Ahsante kwa kutumia soko mkononi. 
+      response = `END Ahsante kwa kutumia soko mkononi.
       Utapokea masoko kwenye number ${phoneNumber} kila siku`;
       this.sendToNumber({
         message: "Ahsante kwa kujiunga na huduma ya masoko mkonni",
@@ -199,7 +203,7 @@ export class VerifyService {
       );
       console.log(JSON.stringify(price));
       if (price) {
-        response = `END Pembejeo ni halali. 
+        response = `END Pembejeo ni halali.
       Mzalishaji: ${price.manufacturer}
       Msambazaji: ${price.supplier}`;
       } else {
@@ -228,8 +232,8 @@ export class VerifyService {
         response = `END Hakuna taarifa za zao ${zao[0]} mkoani ${region}`;
       } else {
         const price = crops[region][0][crop];
-        response = `END Bei ya ${crop}, mkoani ${region}, wilaya ya ${crops[region][0]?.district}. 
-        Bei ya juu: Tshs. ${price.max}/-. 
+        response = `END Bei ya ${crop}, mkoani ${region}, wilaya ya ${crops[region][0]?.district}.
+        Bei ya juu: Tshs. ${price.max}/-.
         Bei ya chini Tshs. ${price.min}/-`;
       }
     }
@@ -240,8 +244,8 @@ export class VerifyService {
     const number = numbers[numbers.length - 1];
     const price = crops.find(({ zao }) => zao?.toLowerCase()?.includes(number));
     if (price) {
-      response = `END Pembejeo ni halali. 
-        Bei ya ${price.zao} kwa gunia ni ${price.price}. 
+      response = `END Pembejeo ni halali.
+        Bei ya ${price.zao} kwa gunia ni ${price.price}.
         Mzalishaji: ${price.manufacturer}
         Msambazaji: ${price.supplier}`;
     } else {
